@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 from datetime import datetime
 import matplotlib.pyplot as plt
+import matplotlib.ticker as ticker
 import yfinance as yf
 from pypfopt.efficient_frontier import EfficientFrontier
 from pypfopt import risk_models, expected_returns
@@ -199,6 +200,9 @@ sc = ax.scatter(returns, volatilities, c=sharpes, cmap='viridis')
 plt.colorbar(sc, label='Sharpe Ratio')
 ax.set_xlabel('Expected Return')
 ax.set_ylabel('Expected Volatility')
+formatter = ticker.ScalarFormatter(useOffset=False)
+formatter.set_scientific(False)
+ax.yaxis.set_major_formatter(formatter)
 ax.set_title('Pareto Front')
 st.pyplot(fig)
 
